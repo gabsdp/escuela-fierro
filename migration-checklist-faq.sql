@@ -1,7 +1,7 @@
 -- ============================================
 -- MIGRACIÓN: Checklist items, FAQ items y progreso de checklist
 -- Ejecutar en Supabase SQL Editor:
---   https://supabase.com/dashboard/project/hvkfykapxobekmtgggse/sql/new
+--   https://supabase.com/dashboard/project/TU_PROYECTO/sql/new
 -- ============================================
 
 -- 1. CREAR TABLAS
