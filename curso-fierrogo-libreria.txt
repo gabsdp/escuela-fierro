@@ -1,0 +1,551 @@
+================================================================================
+CURSO: IMPLEMENTACIÓN FIERRO GO — LIBRERÍA
+product_key: fierrogo_libreria
+================================================================================
+
+Este curso cubre el proceso completo de implementación de Fierro GO para librerías,
+desde la instalación hasta estar listo para operar y facturar.
+
+
+================================================================================
+MÓDULO 1 — Bienvenida e inicio del proceso
+================================================================================
+
+order_index: 1
+published: true
+video_url: https://www.youtube.com/embed/aqz-KE-bpKQ?start=0&end=10&autoplay=0
+(⚠️ reemplazar con video propio de bienvenida FierroGO)
+
+DESCRIPCIÓN:
+Bienvenido a Fierro GO. Este curso te va a guiar paso a paso por todo el proceso
+de implementación. El objetivo es que puedas comenzar a operar de forma autogestionada,
+siguiendo cada módulo en orden.
+
+Antes de comenzar, tené en cuenta:
+- El servidor será instalado por Lambda Sistemas. Recibirás un mail cuando esté listo.
+- A partir de ese momento, todos los correos deben enviarse a soporte@fierro.com.ar
+  para generar un ticket de trabajo automático.
+- Portal de clientes: https://soporte.fierro.com.ar
+
+CHECKLIST DE TAREAS:
+  ☐ Recibí el mail de Lambda Sistemas confirmando que el servidor está instalado
+  ☐ Instalé el puesto de trabajo en mi computadora
+  ☐ Confirmé que puedo ingresar al sistema con mis credenciales
+  ☐ Guardé el mail soporte@fierro.com.ar en mis contactos
+  ☐ Definí la modalidad de facturación (electrónica o manual) y lo informé a soporte@fierro.com.ar
+  ☐ Configuré mi cuenta de mail en Fierro (ver video tutorial del módulo)
+  ☐ Confirmé con soporte@fierro.com.ar la fecha prevista de puesta en marcha
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ ¿Cuánto tarda la instalación del servidor?
+     Lambda Sistemas realiza la instalación y te avisa por mail cuando está lista.
+     El tiempo varía según la modalidad contratada. Ante dudas: soporte@fierro.com.ar
+
+  ❓ ¿Puedo instalar Fierro en Mac?
+     No es posible de forma nativa. La alternativa es instalar una máquina virtual
+     (por ejemplo VirtualBox) con Windows y desde ahí instalar Fierro.
+
+  ❓ ¿Puedo instalar Fierro en Android?
+     No. Fierro requiere Windows o Linux.
+
+  ❓ ¿Qué pasa si no recibo el mail de instalación?
+     Escribí a soporte@fierro.com.ar y el equipo te asiste.
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+MÓDULO 2 — Configuración de mail en Fierro
+================================================================================
+
+order_index: 2
+published: true
+video_url: https://www.youtube.com/embed/QkKn7Z60FoU
+
+DESCRIPCIÓN:
+Antes de continuar con la migración de datos, configurá tu cuenta de mail en Fierro
+por cada usuario. Esto es necesario para recibir reportes, pagos, liquidaciones y
+notificaciones de errores desde el primer día.
+
+CHECKLIST DE TAREAS:
+  ☐ Configuré la cuenta de mail en Fierro para el usuario principal
+  ☐ Si uso Gmail: generé una contraseña de aplicación
+     (ver artículo: ¿Cómo generar una contraseña de aplicación en Gmail?)
+  ☐ Verifiqué que el envío de mails funciona correctamente desde el sistema
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ ¿Por qué tengo que configurar el mail antes de migrar datos?
+     Para que desde el momento de la migración el sistema pueda enviar reportes
+     y notificaciones de errores automáticamente.
+
+  ❓ Uso Gmail y no me deja configurarlo. ¿Qué hago?
+     Gmail requiere generar una "contraseña de aplicación" especial (no es tu
+     contraseña normal). Ver artículo en la base de conocimiento o consultá
+     a soporte@fierro.com.ar
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+MÓDULO 3 — Migración del catálogo
+================================================================================
+
+order_index: 3
+published: true
+video_url: https://www.youtube.com/embed/KLWu8iICHdg
+
+DESCRIPCIÓN:
+El primer paso de migración de datos es cargar el catálogo completo de libros.
+Esta migración inicial la realiza el equipo de soporte de Fierro por única vez.
+Debés enviarles el archivo preparado según las especificaciones indicadas.
+
+Columnas obligatorias:
+  - Título
+  - Editorial
+
+Columnas recomendadas:
+  - Precio
+  - Código (ISBN, código de barras o código interno)
+
+⚠️ No usar planillas con más de 1500 filas. Si el catálogo es más grande,
+dividirlo en varias planillas.
+
+⚠️ En esta etapa NO se carga el stock ni la consignación, solo los registros
+de los libros.
+
+ADJUNTO: Planilla modelo para importación de catálogo
+
+CHECKLIST DE TAREAS:
+  ☐ Preparé la planilla CSV con el catálogo completo
+  ☐ Verifiqué que las columnas obligatorias (Título y Editorial) estén completas
+  ☐ Dividí la planilla en partes si tiene más de 1500 filas
+  ☐ Envié el archivo a soporte@fierro.com.ar
+  ☐ Recibí confirmación de que la migración fue realizada correctamente
+  ☐ Verifiqué en el sistema que los libros aparecen correctamente cargados
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ Tengo problemas creando el catálogo. ¿Qué hago?
+     Revisá que el archivo sea en formato CSV y que las columnas Título y Editorial
+     estén presentes. Si el problema persiste, contactá a soporte@fierro.com.ar
+
+  ❓ ¿Puedo agregar libros manualmente después?
+     Sí. Podés crear libros de forma individual o usar el alta rápida de libros
+     en cualquier momento desde el sistema.
+
+  ❓ ¿El catálogo incluye el stock?
+     No. La migración del catálogo solo crea las fichas de los libros (título,
+     editorial, código, etc.). El stock se carga en el módulo 8.
+
+  ❓ ¿Puedo editar un libro después de importarlo?
+     Sí, las fichas pueden editarse en cualquier momento desde el sistema.
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+MÓDULO 4 — Creación de proveedores
+================================================================================
+
+order_index: 4
+published: true
+video_url: https://www.youtube.com/embed/zlJsGwxI6cA
+
+DESCRIPCIÓN:
+Con el catálogo cargado, el siguiente paso es registrar los proveedores con los
+que trabaja la librería. Esto permitirá luego asociar consignaciones, saldos y
+movimientos correctamente.
+
+Datos obligatorios para crear un proveedor:
+  - Nombre de fantasía
+  - Razón social
+
+Se recomienda cargar también: CUIT, condición fiscal, contacto y dirección.
+La ficha del proveedor puede editarse en cualquier momento.
+
+Opciones:
+  A) Creación manual: proveedor por proveedor desde el sistema
+  B) Importación masiva: usando la planilla modelo (recomendado si tenés muchos)
+
+ADJUNTO: Planilla modelo para importación de proveedores
+
+CHECKLIST DE TAREAS:
+  ☐ Recopilé la información de todos mis proveedores (nombre, razón social, CUIT)
+  ☐ Elegí el método de carga (manual o masivo)
+  ☐ Cargué todos los proveedores en el sistema
+  ☐ Verifiqué que los proveedores aparecen correctamente en Fierro
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ ¿Qué pasa si no tengo el CUIT de un proveedor?
+     El CUIT no es obligatorio. Podés crear el proveedor con nombre y razón social
+     y completar el resto de la información después.
+
+  ❓ ¿Cuántos proveedores puedo importar a la vez?
+     No hay un límite específico indicado para proveedores. Si tenés dudas sobre
+     el volumen, consultá a soporte@fierro.com.ar
+
+  ❓ ¿Puedo modificar un proveedor después de crearlo?
+     Sí, las fichas pueden editarse en cualquier momento sin inconvenientes.
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+MÓDULO 5 — Migración de consignaciones por proveedor
+================================================================================
+
+order_index: 5
+published: true
+video_url: https://www.youtube.com/embed/QdjHQiz2Ouo
+
+DESCRIPCIÓN:
+Si la librería trabaja con material en consignación, debés registrar en Fierro
+los libros que tenés pendientes con cada proveedor.
+
+Por cada proveedor del que tenés libros consignados, cargás un remito de
+consignación (RE) con la cantidad de libros pendientes.
+
+Dos situaciones posibles:
+
+1. Consignaciones antiguas o con mucho volumen → usar importación masiva
+   - Opción simple: código de proveedor, código de libro y cantidad
+   - Opción detallada: incluye además número de remito y fecha
+
+2. Consignaciones pocas o recientes → cargar el remito manualmente
+
+⚠️ Los nuevos remitos que recibas en el futuro siempre se cargan de forma manual.
+   La importación masiva es solo para la migración inicial.
+
+ADJUNTO: Planilla modelo para importación masiva de remitos
+
+CHECKLIST DE TAREAS:
+  ☐ Identifiqué qué proveedores tienen material en consignación conmigo
+  ☐ Elegí el método de carga según el volumen (masivo o manual)
+  ☐ Cargué los remitos de consignación por cada proveedor
+  ☐ Verifiqué que las consignaciones aparecen correctamente en el sistema
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ No tengo material en consignación. ¿Puedo saltear este módulo?
+     Sí, si no tenés consignaciones podés pasar directamente al módulo 6.
+
+  ❓ ¿Cuál es la diferencia entre importación simple y detallada?
+     La simple carga solo proveedor, libro y cantidad. La detallada incluye
+     además número de remito y fecha, útil si querés conservar el historial
+     exacto de cada remito.
+
+  ❓ Tengo problemas cargando las consignaciones.
+     Consultá a soporte@fierro.com.ar con el detalle del error.
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+MÓDULO 6 — Migración de saldos de proveedores
+================================================================================
+
+order_index: 6
+published: true
+video_url: https://www.youtube.com/embed/s69Hj0Sq_mc
+
+DESCRIPCIÓN:
+Este paso aplica solo si tenés pagos pendientes con algún proveedor. Cargar los
+saldos permite que el sistema refleje la deuda real con cada proveedor desde el
+primer día.
+
+Fierro ofrece dos modalidades:
+  - Importación simple: código de proveedor e importe
+  - Importación detallada: incluye el detalle de cada documento o movimiento
+
+⚠️ Si no tenés saldo pendiente con ningún proveedor, podés saltear este módulo.
+
+ADJUNTO: Planilla modelo para importación de saldos de proveedores
+
+CHECKLIST DE TAREAS:
+  ☐ Verifiqué si tengo pagos pendientes con proveedores
+  ☐ Si corresponde: preparé la planilla con los saldos
+  ☐ Importé los saldos en el sistema
+  ☐ Verifiqué que los saldos aparecen correctamente por proveedor
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ ¿Qué pasa si cargo un saldo incorrecto?
+     Podés corregirlo desde el sistema. Ante dudas consultá a soporte@fierro.com.ar
+
+  ❓ No tengo saldos pendientes. ¿Puedo saltear este paso?
+     Sí, directamente pasás al módulo 7.
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+MÓDULO 7 — Migración de clientes
+================================================================================
+
+order_index: 7
+published: true
+video_url: https://www.youtube.com/embed/Vw2fZcbTSTg
+
+DESCRIPCIÓN:
+Si contás con una base de clientes existente, podés migrarla a Fierro usando la
+importación masiva. Se recomienda incluir la mayor cantidad de datos posible
+(nombre, documento, email, teléfono, dirección, condición fiscal).
+
+Las fichas de clientes pueden editarse en cualquier momento.
+
+⚠️ Si no tenés clientes previos, podés saltear este módulo. Los clientes pueden
+darse de alta al momento de crear facturas (alta rápida de clientes).
+
+ADJUNTO: Planilla modelo para importación de clientes — Librería
+
+CHECKLIST DE TAREAS:
+  ☐ Evalué si necesito migrar una base de clientes existente
+  ☐ Si corresponde: preparé la planilla con los datos de los clientes
+  ☐ Importé los clientes en el sistema
+  ☐ Verifiqué que los clientes aparecen correctamente en Fierro
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ No tengo base de clientes. ¿Puedo saltear este módulo?
+     Sí. Podés crear clientes de forma rápida al momento de facturar.
+
+  ❓ ¿Puedo importar clientes con datos incompletos?
+     Sí. Solo el nombre es suficiente para crear la ficha. Podés completar
+     la información después.
+
+  ❓ Tengo problemas con la importación de clientes.
+     Revisá el formato de la planilla y consultá a soporte@fierro.com.ar
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+MÓDULO 8 — Configuración de formas de pago
+================================================================================
+
+order_index: 8
+published: true
+video_url: https://www.youtube.com/embed/GTZmyJv7ls4
+
+DESCRIPCIÓN:
+Antes de comenzar a vender, configurá las formas de cobro que usará la librería.
+Esto permite registrar correctamente los cobros desde el primer día.
+
+Pasos:
+  1. Crear el banco y la cuenta de banco (necesario para transferencias)
+  2. Crear las tarjetas y sus planes de cuotas (intereses y descuentos por plan)
+  3. Si usás otras formas de pago no estándar, créalas manualmente
+
+⚠️ El campo "banco emisor" debe quedar en blanco salvo que haya una promoción
+específica con el banco de la tarjeta. En ese caso, contactá a soporte@fierro.com.ar
+
+CHECKLIST DE TAREAS:
+  ☐ Creé el banco y la cuenta de banco
+  ☐ Cargué todas las tarjetas que acepto
+  ☐ Configuré los planes de cuotas con sus intereses y descuentos
+  ☐ Configuré otras formas de pago si corresponde (cheques, transferencias, etc.)
+  ☐ Verifiqué que todas las formas de pago aparecen correctamente en el sistema
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ ¿Tengo que crear un banco aunque no use transferencias bancarias?
+     Solo es necesario si querés registrar movimientos en cuentas bancarias propias.
+     Si solo operás con efectivo y tarjeta podés omitir el banco.
+
+  ❓ ¿Puedo agregar más tarjetas o planes después?
+     Sí, podés agregar tarjetas y planes en cualquier momento desde el sistema.
+
+  ❓ ¿Qué pongo en "banco emisor" de la tarjeta?
+     Dejalo en blanco, salvo que tengas una promoción específica con el banco
+     emisor de la tarjeta. Ante dudas: soporte@fierro.com.ar
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+MÓDULO 9 — Configuración de facturación
+================================================================================
+
+order_index: 9
+published: true
+video_url: https://www.youtube.com/embed/aqz-KE-bpKQ?start=0&end=10&autoplay=0
+(⚠️ reemplazar con video de configuración de facturación electrónica)
+
+DESCRIPCIÓN:
+Para poder emitir comprobantes con Fierro, necesitás configurar la facturación.
+Este es uno de los pasos obligatorios para comenzar a operar.
+
+Si usás facturación electrónica, los pasos son:
+  1. Alta del certificado digital
+  2. Creación del punto de venta en AFIP
+  3. Asociación del certificado en Fierro
+
+⚠️ Si elegís facturación electrónica, informalo a soporte@fierro.com.ar para
+que el equipo te asista con la configuración del certificado.
+
+Si usás facturación manual (controlador fiscal), contactá a soporte@fierro.com.ar
+para coordinar la configuración.
+
+CHECKLIST DE TAREAS:
+  ☐ Informé a soporte@fierro.com.ar qué modalidad de facturación voy a usar
+  ☐ (Si es electrónica) Tramité el certificado digital en AFIP
+  ☐ (Si es electrónica) Creé el punto de venta en AFIP
+  ☐ (Si es electrónica) Asocié el certificado en Fierro con ayuda de soporte
+  ☐ Verifiqué que puedo emitir una factura de prueba correctamente
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ ¿Qué modalidad de facturación me conviene?
+     Depende de tu operatoria. Consultá con tu contador y luego informá tu
+     decisión a soporte@fierro.com.ar
+
+  ❓ No sé cómo tramitar el certificado digital en AFIP. ¿Me ayudan?
+     Sí, el equipo de soporte te acompaña en este proceso. Escribí a
+     soporte@fierro.com.ar
+
+  ❓ No puedo emitir facturas después de configurar todo.
+     Contactá a soporte@fierro.com.ar con el mensaje de error que te aparece.
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+MÓDULO 10 — Ajuste de stock inicial
+================================================================================
+
+order_index: 10
+published: true
+video_url: https://www.youtube.com/embed/aqz-KE-bpKQ?start=0&end=10&autoplay=0
+(⚠️ reemplazar con video de toma de inventario completo)
+
+DESCRIPCIÓN:
+Como último paso antes de operar, dejá el stock correcto en el sistema.
+Tenés tres opciones según tu situación:
+
+Opción A — Tenés la consignación cargada y material en firme:
+  → Crear documentos de stock para el material en firme solamente.
+
+Opción B — Tenés un conteo total y confiable de todos los libros:
+  → Crear una toma de inventario completo. El sistema ajustará todo el
+    stock automáticamente según tu planilla.
+
+Opción C — Querés arrancar rápido sin hacer inventario:
+  → Habilitar stock negativo y hacer el inventario real después para
+    regularizar.
+
+CHECKLIST DE TAREAS:
+  ☐ Evalué cuál de las tres opciones corresponde a mi situación
+  ☐ (Opción A) Creé los documentos de stock para el material en firme
+  ☐ (Opción B) Realicé la toma de inventario completo con el conteo
+  ☐ (Opción C) Habilité el stock negativo para comenzar a operar
+  ☐ Verifiqué que el stock del sistema refleja la realidad de mi librería
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ ¿Cuál es la diferencia entre documento de stock e inventario completo?
+     El documento de stock agrega o ajusta libros específicos. El inventario
+     completo reemplaza todo el stock del sistema con tu conteo total.
+
+  ❓ ¿Puedo hacer el inventario después de empezar a vender?
+     Sí. La opción C (stock negativo) existe para esto. Podés facturar de
+     inmediato y regularizar el stock después con el inventario.
+
+  ❓ Tengo problemas creando el inventario.
+     Contactá a soporte@fierro.com.ar con el detalle del error.
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+MÓDULO 11 — Primeras ventas: cómo usar el sistema
+================================================================================
+
+order_index: 11
+published: true
+video_url: https://www.youtube.com/embed/hqU-vAKkCcI
+
+DESCRIPCIÓN:
+¡Ya estás listo para operar! Este módulo te muestra cómo usar Fierro para la
+gestión diaria de ventas minoristas.
+
+El video cubre todo esto (con timestamps para ir directo a cada tema):
+  → Búsqueda de libros
+  → Personalizar columnas de resultado
+  → Puesto de consultas
+  → Consulta de libros vía web
+  → Cómo crear una factura de venta
+  → Alta rápida de clientes
+  → Formas de pago
+  → Crear nota de crédito
+  → Cierre de cajas y tarjetas
+  → Reportes de venta
+
+CHECKLIST DE TAREAS:
+  ☐ Realicé una venta de prueba con factura
+  ☐ Verifiqué que las formas de pago funcionan correctamente
+  ☐ Aprendí a buscar libros y consultar stock
+  ☐ Practiqué cómo crear una nota de crédito
+  ☐ Verifiqué el cierre de caja
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ ¿Cómo busco un libro que no aparece en el catálogo?
+     Podés darlo de alta manualmente con el alta rápida de libros, o contactar
+     a soporte@fierro.com.ar para que verifiquen si hay un problema con la
+     importación.
+
+  ❓ El cliente no está en el sistema. ¿Qué hago?
+     Usá el alta rápida de clientes directamente desde la pantalla de facturación.
+
+  ❓ Me equivoqué en una factura. ¿Cómo la corrijo?
+     Creá una nota de crédito. El video de este módulo lo explica en detalle.
+
+  ❓ Tengo un problema al facturar.
+     Contactá a soporte@fierro.com.ar describiendo el error con capturas de pantalla.
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+MÓDULO 12 — Asesoría y coordinación de puesta en marcha
+================================================================================
+
+order_index: 12
+published: true
+video_url: https://www.youtube.com/embed/aqz-KE-bpKQ?start=0&end=10&autoplay=0
+(⚠️ reemplazar con video propio de cierre / resumen)
+
+DESCRIPCIÓN:
+Una vez que migraste el catálogo, los proveedores y configuraste los puntos de
+venta, podés coordinar con el equipo de Fierro una hora de asesoría para resolver
+dudas y revisar la configuración antes de comenzar a operar.
+
+Para solicitar la asesoría escribí a soporte@fierro.com.ar indicando:
+  - Tu nombre y el nombre de la librería
+  - Que completaste la migración de catálogo, proveedores y puntos de venta
+  - Tu disponibilidad horaria
+
+También confirmá la fecha prevista de puesta en marcha con el equipo.
+
+CHECKLIST FINAL — Antes de empezar a operar:
+  ☐ Catálogo migrado y verificado
+  ☐ Proveedores cargados
+  ☐ Consignaciones cargadas (si corresponde)
+  ☐ Saldos de proveedores cargados (si corresponde)
+  ☐ Clientes migrados (si corresponde)
+  ☐ Formas de pago configuradas
+  ☐ Facturación configurada (electrónica o manual)
+  ☐ Stock inicial ajustado
+  ☐ Mail configurado en Fierro
+  ☐ Asesoría coordinada con soporte
+  ☐ Fecha de puesta en marcha confirmada con soporte@fierro.com.ar
+
+PREGUNTAS FRECUENTES (FAQ):
+  ❓ ¿Cuántas horas de asesoría están incluidas?
+     Consultá las condiciones de tu contrato o escribí a soporte@fierro.com.ar
+
+  ❓ ¿Qué pasa después de la puesta en marcha?
+     El equipo de soporte sigue disponible en soporte@fierro.com.ar para
+     cualquier consulta o inconveniente operativo.
+
+  ❓ ¿Dónde encuentro más tutoriales y artículos de ayuda?
+     En el portal de soporte: https://soporte.fierro.com.ar
+
+  [BOTÓN: Consultar a soporte → mailto:soporte@fierro.com.ar]
+
+
+================================================================================
+FIN DEL CURSO — FIERRO GO LIBRERÍA
+================================================================================

@@ -1,0 +1,384 @@
+================================================================================
+FIERRO ESCUELA — BRIEFING COMPLETO PARA ARRANCAR DESDE LA TERMINAL
+================================================================================
+
+PASO 0 — PREREQUISITOS
+────────────────────────────────────────────────────────────────────────────────
+Verificar que tenés instalado:
+
+  node --version     → necesitás v18.17 o superior
+  npm --version      → v9+
+  git --version
+
+Si no tenés Node: https://nodejs.org (bajar versión LTS)
+Si no tenés Claude Code: https://claude.ai/code
+
+
+PASO 1 — CUENTAS Y SERVICIOS
+────────────────────────────────────────────────────────────────────────────────
+Supabase (ya creado):
+  Project URL:      https://TU_PROYECTO.supabase.co
+  Anon Key:         sb_publishable_TU_ANON_KEY
+  Service Role Key: sb_secret_TU_SERVICE_ROLE_KEY
+
+  ⚠️  IMPORTANTE: no compartas la Service Role Key públicamente.
+      Nunca va en el frontend, solo en variables de servidor.
+
+
+PASO 2 — ARRANCAR CLAUDE CODE EN LA TERMINAL
+────────────────────────────────────────────────────────────────────────────────
+  1. Abrir terminal
+  2. Navegar a la carpeta donde querés crear el proyecto
+  3. Ejecutar: claude
+  4. Pegar el PROMPT DE ARRANQUE que está más abajo
+
+
+PASO 3 — VARIABLES DE ENTORNO (.env.local)
+────────────────────────────────────────────────────────────────────────────────
+Claude Code va a crear el archivo. Los valores son:
+
+  NEXT_PUBLIC_SUPABASE_URL=https://TU_PROYECTO.supabase.co
+  NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_TU_ANON_KEY
+  SUPABASE_SERVICE_ROLE_KEY=sb_secret_TU_SERVICE_ROLE_KEY
+
+
+PASO 4 — SQL PARA SUPABASE
+────────────────────────────────────────────────────────────────────────────────
+Cuando Claude Code genere el schema.sql:
+  1. Ir a https://supabase.com/dashboard
+  2. Seleccionar el proyecto
+  3. SQL Editor → New Query
+  4. Pegar el contenido de schema.sql
+  5. Click en "Run"
+
+
+PASO 5 — PRIMER USUARIO ADMIN
+────────────────────────────────────────────────────────────────────────────────
+Usuarios ya existentes en la base:
+
+  Email:    admin@fierro.com.ar
+  Password: Fierro2024!
+  Rol:      admin
+
+  Email:    gabriela.diaz@fierro.com.ar
+  Rol:      admin
+
+
+================================================================================
+PROMPT DE ARRANQUE — COPIAR Y PEGAR EN CLAUDE CODE
+================================================================================
+
+Quiero que construyas una plataforma web llamada "Fierro Escuela".
+
+## Contexto del producto
+Es una plataforma de capacitación para clientes e internos de Fierro (fierro.com.ar),
+un ERP para librerías y editoriales. El objetivo es que los usuarios puedan aprender
+a implementar Fierro de forma autogestionada a través de cursos organizados en módulos
+de video con material de apoyo.
+
+## Stack
+- Next.js 16 (App Router, TypeScript, Tailwind CSS 4)
+- Supabase (auth, base de datos, storage)
+- TipTap (editor rich text)
+- React Hook Form + Zod 4
+- @dnd-kit (drag & drop para reordenar módulos)
+- lucide-react (íconos)
+
+## Branding
+Basado en el sistema de diseño oficial de Fierro:
+- Fondo: #FFFFFF
+- Navbar / headers: #1B3A7A (azul oscuro)
+- Acento principal (botones CTA, highlights): #F5A623 (naranja)
+- Acento secundario (links, íconos activos): #1E6FBF (azul medio)
+- Texto principal: #212121
+- Texto secundario: #666666
+- Bordes y separadores: #E0E0E0
+- Tipografía: Roboto (importar desde Google Fonts)
+- Estética: limpia, profesional, clara — similar a un LMS corporativo
+
+## Roles de usuario
+- `admin`: equipo de Fierro, gestiona contenido y usuarios desde panel admin
+- `student`: clientes de Fierro, acceden solo a los cursos que el admin les habilitó
+
+## Productos disponibles (5 cursos)
+Cada curso corresponde a un producto de Fierro:
+1. Librería
+2. Editorial
+3. FierroGO Librería
+4. FierroGO Editorial
+5. Distribuidora
+
+## Estructura de datos
+
+Cursos (courses):
+- id, title, product_key ('libreria' | 'editorial' | 'fierrogo_libreria' |
+  'fierrogo_editorial' | 'distribuidora'), description, order_index,
+  published (boolean), created_at, updated_at
+
+Módulos (modules):
+- id, course_id (FK → courses), title, description (rich text/html),
+  video_url (YouTube embed), order_index (integer), published (boolean),
+  created_at, updated_at
+
+Archivos adjuntos (module_files):
+- id, module_id (FK → modules), name, file_url, created_at
+
+Perfiles (profiles, extiende auth.users de Supabase):
+- id (FK → auth.users), email, full_name, role ('admin' | 'student'), created_at
+
+Acceso a cursos por usuario (user_courses):
+- id, user_id (FK → profiles), course_id (FK → courses),
+  assigned_at, assigned_by (FK → profiles)
+- UNIQUE(user_id, course_id)
+
+Progreso por usuario (user_progress):
+- id, user_id (FK → profiles), module_id (FK → modules),
+  completed (boolean), completed_at
+- UNIQUE(user_id, module_id)
+
+Storage bucket: `attachments` (público)
+
+## Páginas — Alumno
+
+/login
+- Formulario email + contraseña
+- Logo Fierro centrado, fondo blanco, navbar azul
+
+/escuela
+- Dashboard del alumno
+- Muestra solo los cursos que el admin le asignó
+- Si no tiene ninguno: mensaje "Tu acceso está siendo configurado por el equipo de Fierro"
+- Cada curso: título, descripción, progreso general (X/Y módulos completados)
+
+/escuela/[course_id]
+- Listado de módulos del curso (solo published = true)
+- Cada módulo: título, check si completado
+- Progreso visual del curso
+
+/escuela/[course_id]/[module_id]
+- Título del módulo
+- Video embed de YouTube (responsive, 16:9)
+- Descripción en rich text
+- Lista de archivos adjuntos descargables
+- Botón "Marcar como completado" → upsert en user_progress
+- Navegación anterior / siguiente módulo
+
+## Páginas — Admin
+
+/admin
+- Listado de cursos con cantidad de módulos y alumnos asignados
+- Botón "Nuevo curso"
+- Acceso rápido a gestión de usuarios
+
+/admin/cursos/nuevo
+- Formulario: título, product_key (selector), descripción, published
+
+/admin/cursos/[id]
+- Editar datos del curso
+- Listado de módulos con drag & drop para reordenar
+- Botón "Nuevo módulo"
+- Publicar/despublicar curso
+
+/admin/cursos/[id]/modulos/nuevo
+- Formulario: título, descripción (editor TipTap), video_url, published
+- Subida de archivos adjuntos (múltiples PDFs)
+
+/admin/cursos/[id]/modulos/[module_id]
+- Igual que nuevo pero precargado
+- Sección para ver y eliminar archivos ya subidos
+
+/admin/usuarios
+- Listado de todos los usuarios registrados
+- Columnas: nombre, email, fecha de registro, cursos asignados
+- Buscador por nombre o email
+
+/admin/usuarios/nuevo
+- El admin crea la cuenta del estudiante (no hay registro público)
+- Campos: nombre completo, email, contraseña temporal
+
+/admin/usuarios/[id]
+- Ver perfil del usuario
+- Asignar / quitar cursos (checkboxes por cada curso disponible)
+- Ver progreso del usuario por curso
+
+## Protección de rutas
+- /escuela/* → solo usuarios autenticados
+- /admin/* → solo usuarios con role = 'admin'
+- Si no autenticado → redirigir a /login
+- Student intenta /admin → redirigir a /escuela
+- Login con admin → redirigir a /admin
+- Login con student → redirigir a /escuela
+
+## Video placeholder para módulos sin video propio
+Usar esta URL mientras no haya video real grabado:
+  https://www.youtube.com/embed/aqz-KE-bpKQ?start=0&end=10&autoplay=0
+
+## Variables de entorno (.env.local)
+NEXT_PUBLIC_SUPABASE_URL=https://TU_PROYECTO.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_TU_ANON_KEY
+SUPABASE_SERVICE_ROLE_KEY=sb_secret_TU_SERVICE_ROLE_KEY
+
+## Pasos para construir en orden
+1. Crear el proyecto con create-next-app (TypeScript + Tailwind + App Router)
+2. Instalar todas las dependencias listadas arriba
+3. Configurar cliente Supabase para browser y server (SSR)
+4. Generar el SQL completo del schema para que yo lo ejecute en Supabase
+5. Configurar Roboto desde Google Fonts en el layout global
+6. Crear el sistema de auth: /login con el branding de Fierro
+7. Crear middleware/proxy de protección de rutas
+8. Construir /escuela (dashboard del alumno)
+9. Construir /escuela/[course_id] y /escuela/[course_id]/[module_id]
+10. Construir /admin/usuarios (listado + asignación de cursos)
+11. Construir /admin/cursos y gestión de módulos
+
+Arrancá por el paso 1. Avisame cuando necesites las keys de Supabase (paso 3).
+Antes de escribir cualquier componente, preguntame si tengo alguna preferencia de
+estructura o confirmame que podés avanzar con las decisiones que tomaste.
+
+
+================================================================================
+CONTENIDO PARA CARGAR EN EL ADMIN UNA VEZ QUE LA PLATAFORMA ESTÉ LISTA
+================================================================================
+
+CURSO: Implementación Fierro — Librería
+product_key: libreria
+
+────────────────────────────────────────────────────────────────────────────────
+Módulo 1 — Bienvenida e introducción
+  order_index: 1
+  published: true
+  video_url: https://www.youtube.com/embed/aqz-KE-bpKQ?start=0&end=10&autoplay=0
+  (⚠️ reemplazar con video propio de bienvenida)
+  Descripción:
+    Bienvenido a Fierro Escuela. En este curso vas a aprender paso a paso
+    cómo implementar el sistema Fierro en tu librería. Seguí los módulos
+    en orden para completar el proceso de migración de forma autogestionada.
+
+────────────────────────────────────────────────────────────────────────────────
+Módulo 2 — Migración del catálogo
+  order_index: 2
+  published: true
+  video_url: https://www.youtube.com/embed/KLWu8iICHdg
+  Adjunto: Planilla modelo para importación de catálogo
+  Descripción:
+    El primer paso es migrar tu catálogo de libros. Las columnas obligatorias
+    son: Título, Editorial, Precio y Código (puede ser ISBN, código de barras
+    o código interno). Descargá la planilla modelo adjunta, completala con
+    tu catálogo y seguí el video para importarla al sistema.
+
+────────────────────────────────────────────────────────────────────────────────
+Módulo 3 — Importación de proveedores
+  order_index: 3
+  published: true
+  video_url: https://www.youtube.com/embed/zlJsGwxI6cA
+  Adjunto: Planilla modelo para importación de proveedores
+  Descripción:
+    Con el catálogo cargado, el siguiente paso es importar tus proveedores.
+    Usá la herramienta de importación masiva de proveedores con la planilla
+    modelo adjunta. El video muestra cómo armar la planilla, seleccionar
+    el formato correcto e importar los datos.
+
+────────────────────────────────────────────────────────────────────────────────
+Módulo 4 — Carga de consignaciones por proveedor
+  order_index: 4
+  published: true
+  video_url: https://www.youtube.com/embed/QdjHQiz2Ouo
+  Adjunto: Planilla modelo para importación de remitos
+  Descripción:
+    Por cada proveedor del que tenés libros consignados, debés cargar un
+    remito de consignación (RE) con el stock pendiente. Fierro necesita
+    tres datos: código del proveedor, código del libro y cantidad.
+    Descargá la planilla modelo y seguí el video.
+
+────────────────────────────────────────────────────────────────────────────────
+Módulo 5 — Saldos de cuenta por proveedor
+  order_index: 5
+  published: true
+  video_url: https://www.youtube.com/embed/s69Hj0Sq_mc
+  Adjunto: Planilla modelo para importación de saldos
+  Descripción:
+    Para continuar con tu operatoria de pagos, necesitás cargar el saldo
+    inicial de cada proveedor. Fierro necesita dos datos: código del proveedor
+    y saldo. Descargá la planilla modelo adjunta y seguí el video.
+
+────────────────────────────────────────────────────────────────────────────────
+Módulo 6 — Importación de clientes
+  order_index: 6
+  published: true
+  video_url: https://www.youtube.com/embed/Vw2fZcbTSTg
+  Adjunto: Planilla modelo para importación de clientes — Librería
+  Descripción:
+    Si contás con una base de clientes existente, podés migrarla a Fierro
+    usando la herramienta de importación masiva. Descargá la planilla modelo
+    para librería, completala con tu base de datos y seguí el video.
+
+────────────────────────────────────────────────────────────────────────────────
+Módulo 7 — Configuración financiera
+  order_index: 7
+  published: true
+  video_url: https://www.youtube.com/embed/GTZmyJv7ls4
+  Descripción:
+    En este módulo configurás los medios de pago. Primero creá el banco y
+    la cuenta de banco donde ingresan y egresan tus pagos. Luego configurá
+    las tarjetas y sus planes (cuotas, intereses y descuentos).
+    Nota: el campo "banco emisor" debe quedar en blanco salvo que exista
+    una promoción con el banco de la tarjeta. En ese caso contactar a Soporte.
+
+────────────────────────────────────────────────────────────────────────────────
+Módulo 8 — Puntos de venta
+  order_index: 8
+  published: true
+  video_url: https://www.youtube.com/embed/cFCoKBXo3Pk
+  Descripción:
+    Los puntos de venta representan los puntos de emisión de facturas y
+    notas de crédito. Debés ingresar todos los puntos de facturación
+    habilitados antes de empezar a operar.
+
+────────────────────────────────────────────────────────────────────────────────
+Módulo 9 — Ajuste de stock inicial
+  order_index: 9
+  published: true
+  video_url: https://www.youtube.com/embed/aqz-KE-bpKQ?start=0&end=10&autoplay=0
+  (⚠️ reemplazar con video de toma de inventario — link roto en el original)
+  Descripción:
+    Tenés dos opciones para el stock inicial:
+    Opción A: Si tenés el stock confiable en una planilla, realizá una toma
+    de inventario completo en Fierro y el sistema ajustará el stock físico.
+    Opción B: Si no tenés stock confiable, activá el stock negativo como
+    permitido y realizá el inventario real contando los libros desde el sistema.
+
+────────────────────────────────────────────────────────────────────────────────
+Módulo 10 — Listo para operar
+  order_index: 10
+  published: true
+  video_url: https://www.youtube.com/embed/aqz-KE-bpKQ?start=0&end=10&autoplay=0
+  (⚠️ reemplazar con video propio de cierre)
+  Descripción:
+    ¡Felicitaciones! Completaste el proceso de implementación de Fierro.
+    Antes de empezar a operar, revisá el checklist final. Ante cualquier
+    duda, el equipo de soporte está disponible en:
+    https://soporte.fierro.com.ar
+
+
+================================================================================
+COMANDOS ÚTILES
+================================================================================
+
+  npm run dev      → iniciar servidor local en http://localhost:3000
+  npm run build    → build de producción
+  npm run lint     → linting
+
+
+================================================================================
+NOTAS TÉCNICAS IMPORTANTES
+================================================================================
+
+- Next.js 16 renombró middleware.ts a proxy.ts con export nombrado `proxy`
+- Zod 4 usa z.infer<T> (alias de z.output<T>)
+- TipTap requiere `immediatelyRender: false` para evitar errores de hidratación
+- El cliente Supabase del proxy debe usar service_role para omitir RLS
+  en verificaciones de rol
+- No hay registro público: el admin crea las cuentas de los estudiantes
+
+
+================================================================================

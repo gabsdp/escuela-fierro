@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-fierro-navy: #1b3a7a;
+  --color-fierro-orange: #f5a623;
+  --color-fierro-blue: #1e6fbf;
+  --color-fierro-dark: #212121;
+  --color-fierro-gray: #666666;
+  --color-fierro-border: #e0e0e0;
+  --color-fierro-bg: #ffffff;
+}
+
+body {
+  background: #ffffff;
+  color: #212121;
+  font-family: var(--font-roboto), sans-serif;
+}
