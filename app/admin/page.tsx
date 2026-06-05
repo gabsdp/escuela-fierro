@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { Book, Users, Edit, PlusCircle, GraduationCap } from "lucide-react";
 import Link from "next/link";
 import { PRODUCT_LABELS, type CourseWithCounts, type ProductKey } from "@/lib/types";
+import DuplicateCourseButton from "@/components/DuplicateCourseButton";
 
 export default async function AdminPage() {
   const supabase = await createClient();
@@ -109,6 +110,7 @@ export default async function AdminPage() {
                       Ver alumnos
                     </Link>
                   )}
+                  <DuplicateCourseButton courseId={course.id} />
                   <Link
                     href={`/admin/cursos/${course.id}`}
                     className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm text-[#1E6FBF] hover:underline font-medium whitespace-nowrap"

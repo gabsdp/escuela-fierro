@@ -17,7 +17,7 @@ import {
   verticalListSortingStrategy,
   arrayMove,
 } from "@dnd-kit/sortable";
-import { ArrowLeft, Save, Trash2, PlusCircle, Eye, EyeOff, Edit, GripVertical, Play } from "lucide-react";
+import { ArrowLeft, Save, Trash2, PlusCircle, Eye, EyeOff, Edit, GripVertical, Play, Copy, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -106,6 +106,7 @@ export default function EditCursoPage() {
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [duplicating, setDuplicating] = useState(false);
   const [modules, setModules] = useState<Module[]>([]);
   const supabase = createClient();
 
@@ -158,6 +159,24 @@ export default function EditCursoPage() {
     await supabase.from("user_courses").delete().eq("course_id", id);
     await supabase.from("courses").delete().eq("id", id);
     router.push("/admin");
+  };
+
+  const handleDuplicate = async () => {
+    if (!confirm("¿Duplicar este curso con todos sus módulos?")) return;
+    setDuplicating(true);
+    try {
+      const res = await fetch(`/api/admin/courses/${id}/duplicate`, { method: "POST" });
+      const data = await res.json();
+      if (data.id) {
+        router.push(`/admin/cursos/${data.id}`);
+      } else {
+        setError(data.error ?? "Error al duplicar");
+      }
+    } catch {
+      setError("Error al duplicar el curso");
+    } finally {
+      setDuplicating(false);
+    }
   };
 
   const handleDragEnd = async (event: DragEndEvent) => {
@@ -269,14 +288,25 @@ export default function EditCursoPage() {
               {saving ? "Guardando..." : "Guardar cambios"}
             </button>
           </div>
-          <button
-            type="button"
-            onClick={handleDeleteCourse}
-            className="text-red-500 hover:text-red-600 font-medium text-xs sm:text-sm flex items-center gap-1.5"
-          >
-            <Trash2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-            Eliminar curso
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={handleDuplicate}
+              disabled={duplicating}
+              className="text-[#666666] hover:text-[#F5A623] font-medium text-xs sm:text-sm flex items-center gap-1.5 transition-colors"
+            >
+              {duplicating ? <Loader2 className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-spin" /> : <Copy className="h-3.5 w-3.5 sm:h-4 sm:w-4" />}
+              {duplicating ? "Duplicando..." : "Duplicar curso"}
+            </button>
+            <button
+              type="button"
+              onClick={handleDeleteCourse}
+              className="text-red-500 hover:text-red-600 font-medium text-xs sm:text-sm flex items-center gap-1.5"
+            >
+              <Trash2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              Eliminar curso
+            </button>
+          </div>
         </div>
       </form>
 
